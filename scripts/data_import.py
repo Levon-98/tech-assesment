@@ -94,7 +94,3 @@ print(final_states_df)
 print("Cost Basis:")
 print(cost_basis_df)
 
-
-# Return trades_df so that it can be accessed in other scripts
-def get_trades_df():
-    return trades_df

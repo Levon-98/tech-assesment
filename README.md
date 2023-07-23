@@ -32,3 +32,27 @@ Now, combine all the needed data:
 
 in order to calculate the Daily Productive Units for each metric for each client for every day.
 In the format of [date, accid, metric, dpu] or [date, accid, animals, climate, social, governance, transparency], your choice.
+
+
+
+## Initial setup
+To start the Docker run the following command \
+`docker-compose up --build`
+
+#### 1. To get the result of the first assessment run the command below 
+`docker-compose run app python scripts/data_import.py`
+
+#### 2.The results of the second and third steps are combined and to get the image of the chart located in the Docker image run   
+`docker-compose run app python scripts/client_portfolio_performances.py`
+
+to be able to open the actual image in your locale machine you need to execute 
+
+`docker cp container_name:/path/to/output/plot.png /path/to/your/host/machine/`
+
+#### 4. I did not manage time to complete the fourth assessment  
+
+#### 5.The results of the fifth assessment run the command below 
+`docker-compose run app python scripts/esg_score_Index.py`
+
+#### 6.The results of the sixth assessment run the command below 
+`docker-compose run app python scripts/esg_score_for_client_portfolios.py`
