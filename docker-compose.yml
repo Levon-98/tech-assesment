@@ -1,0 +1,32 @@
+version: '3.9'
+
+services:
+  db:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: password  # Replace with your desired MySQL root password
+      MYSQL_DATABASE: my_database   # Replace with your desired MySQL database name
+    volumes:
+      - db_data:/var/lib/mysql      # Persist MySQL data outside the container
+
+  app:
+    build: .
+    command: python scripts/analysis.py  # Replace this with your main Python script path
+#    command: python scripts/data_import.py
+    volumes:
+      - ./data:/app/data                   # Mount the current project directory as the working directory
+    depends_on:
+      - db
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    restart: always
+    environment:
+      PMA_HOST: db
+      PMA_USER: root
+      PMA_PASSWORD: password
+    ports:
+      - "8080:80"
+
+volumes:
+  db_data:
